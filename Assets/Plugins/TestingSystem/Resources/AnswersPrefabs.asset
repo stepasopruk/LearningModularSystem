@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef8b0ff596c54592a8110c8656e23ef8, type: 3}
+  m_Name: AnswersPrefabs
+  m_EditorClassIdentifier: 
+  answerTextView: {fileID: 1532112392928639351, guid: 6c9203c3a66b83848b6497af1ab9efe8,
+    type: 3}

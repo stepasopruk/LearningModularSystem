@@ -1,0 +1,14 @@
+﻿{
+  "name": "com.justify.userinterfaceextension",
+  "displayName": "UserInterfaceExtension",
+  "version": "1.0.0",
+  "unity": "2019.2",
+  "keywords": [
+    "UI",
+    "Button",
+    "Toggle",
+    "Slider"
+  ],
+  "description": "UI Extensions with abstract class realizations",
+  "dependencies": { }
+}

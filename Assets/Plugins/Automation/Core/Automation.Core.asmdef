@@ -1,0 +1,18 @@
+{
+    "name": "Automation",
+    "rootNamespace": "",
+    "references": [
+        "GUID:5aa08963af5792946880daf1cd98fff7"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

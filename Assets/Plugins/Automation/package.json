@@ -1,0 +1,14 @@
+﻿{
+  "name": "com.justify.automation",
+  "displayName": "Automation",
+  "version": "1.2.0",
+  "unity": "2020.1",
+  "keywords": [
+    "Autobuild",
+    "Templates",
+    "Git",
+    "Process"
+  ],
+  "description": "Automation with templates loading and autobuild",
+  "dependencies": { }
+}
