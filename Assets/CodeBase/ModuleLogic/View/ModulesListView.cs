@@ -42,25 +42,28 @@ public class ModulesListView : MonoBehaviour
             ToggleActive?.Invoke(false);
     }
 
-    public void RemoveModuleList() 
+    public IModule RemoveModuleList() 
     {
         Toggle[] toggles = toggleGroup.ActiveToggles().ToArray();
 
         foreach (Toggle toggle in toggles)
         {
             if (!toggle.isOn)
-                return;
+                continue;
 
             if(toggle.TryGetComponent(out ToggleModuleView toggleModule))
             {
+                ToggleActive?.Invoke(false);
                 toggle.onValueChanged.RemoveListener(Toggle_OnValueChanged);
                 toggleGroup.UnregisterToggle(toggle);
                 _toggleModules.Remove(toggleModule);
                 _togglesView.Remove(toggle);
                 Destroy(toggleModule.gameObject);
-                ToggleActive?.Invoke(false);
+                return toggleModule.Module;
             }
         }
+
+        return null;
     }
 
     private void OnDestroy()

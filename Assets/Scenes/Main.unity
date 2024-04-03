@@ -3465,6 +3465,8 @@ GameObject:
   - component: {fileID: 1594389654}
   - component: {fileID: 1594389653}
   - component: {fileID: 1594389652}
+  - component: {fileID: 1594389655}
+  - component: {fileID: 1594389656}
   m_Layer: 5
   m_Name: SaveButton
   m_TagString: Untagged
@@ -3575,6 +3577,33 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1594389650}
   m_CullTransparentMesh: 1
+--- !u!114 &1594389655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1594389650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d54fcf1c9de764f4cb5228714171398d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lessonController: {fileID: 1001454210}
+--- !u!114 &1594389656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1594389650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56e700549ec67be498f5e8110a849083, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inactive: {fileID: 1691203269}
+  _active: {fileID: 1386528058}
 --- !u!1 &1620305498
 GameObject:
   m_ObjectHideFlags: 0
@@ -3694,6 +3723,7 @@ GameObject:
   - component: {fileID: 1662695602}
   - component: {fileID: 1662695601}
   - component: {fileID: 1662695600}
+  - component: {fileID: 1662695603}
   m_Layer: 5
   m_Name: NameLessonText
   m_TagString: Untagged
@@ -3829,6 +3859,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1662695598}
   m_CullTransparentMesh: 1
+--- !u!114 &1662695603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1662695598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abdf30900be4b5b48a1411e5e06290f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lessonController: {fileID: 1001454210}
+  saveSettingLessonButton: {fileID: 1594389655}
 --- !u!1 &1691203269
 GameObject:
   m_ObjectHideFlags: 0

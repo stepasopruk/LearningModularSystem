@@ -19,4 +19,18 @@ internal class LessonController : MonoBehaviour
         _lessons.Add(lesson);
         _currentLesson = lesson;
     }
+
+    public void RemoveLesson(Lesson lesson)
+    {
+        _lessons.Remove(lesson);
+    }
+
+    public void SetLessonName(string name) => 
+        _currentLesson.Name = name;
+
+    public void SaveSettingLesson()
+    {
+        //TODO: invoke event LessonSaved and add Lesson to DataBase
+        _currentLesson = null;
+    }
 }

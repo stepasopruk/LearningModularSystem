@@ -17,8 +17,6 @@ public class ModuleController : MonoBehaviour
         modulesListView.ToggleActive += ModulesListView_ToggleActive;
     }
 
-
-
     private void OnDestroy() =>
         modulesListView.ToggleActive -= ModulesListView_ToggleActive;
 
@@ -31,7 +29,13 @@ public class ModuleController : MonoBehaviour
 
     public void RemoveModuleLesson()
     {
-        modulesListView.RemoveModuleList();
+        IModule module = modulesListView.RemoveModuleList();
+
+        if (module == null)
+            return;
+
+        _modules.Remove(module);
+        lessonController.CurrentLesson.RemoveModule(module);
     }
 
     private void ModulesListView_ToggleActive(bool active) => 
