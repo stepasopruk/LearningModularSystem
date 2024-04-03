@@ -3916,8 +3916,9 @@ GameObject:
   - component: {fileID: 1693938453}
   - component: {fileID: 1693938452}
   - component: {fileID: 1693938451}
+  - component: {fileID: 1693938454}
   m_Layer: 5
-  m_Name: DeleteModule
+  m_Name: RemoveModule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4026,6 +4027,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1693938449}
   m_CullTransparentMesh: 1
+--- !u!114 &1693938454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1693938449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbabea88c5749184db694268dad83646, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moduleController: {fileID: 16095268}
 --- !u!224 &1706801785 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4436387913102721519, guid: 25f509d7a14b0fa478c7ec3291586e00, type: 3}

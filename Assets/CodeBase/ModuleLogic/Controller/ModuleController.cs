@@ -1,9 +1,11 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ModuleController : MonoBehaviour
 {
+    public event Action<bool> ToggleActive;
+
     [SerializeField] private LessonController lessonController;
     [SerializeField] private ModulesListView modulesListView;
 
@@ -12,7 +14,13 @@ public class ModuleController : MonoBehaviour
     private void Awake()
     {
         _modules = new List<IModule>();
+        modulesListView.ToggleActive += ModulesListView_ToggleActive;
     }
+
+
+
+    private void OnDestroy() =>
+        modulesListView.ToggleActive -= ModulesListView_ToggleActive;
 
     public void AddModuleLesson(IModule module)
     {
@@ -20,4 +28,12 @@ public class ModuleController : MonoBehaviour
         lessonController.CurrentLesson.AddModule(module);
         modulesListView.AddModuleList(module);
     }
+
+    public void RemoveModuleLesson()
+    {
+        modulesListView.RemoveModuleList();
+    }
+
+    private void ModulesListView_ToggleActive(bool active) => 
+        ToggleActive?.Invoke(active);
 }
