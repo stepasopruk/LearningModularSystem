@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ModulesListView : MonoBehaviour
+public class ListModuleView : MonoBehaviour
 {
     public event Action<bool> ToggleActive;
 

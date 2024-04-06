@@ -10,8 +10,7 @@ public class Lesson : ILesson
     }
 
     private readonly List<IModule> _modules;
-    private readonly Stack<IModule> _lessonModules;
-    public Stack<IModule> LessonModules => _lessonModules;
+    public List<IModule> LessonModules => _modules;
 
     public Lesson()
     {
@@ -28,11 +27,4 @@ public class Lesson : ILesson
     {
         _modules.Remove(module);
     }
-}
-
-public interface ILesson
-{
-    void AddModule(IModule module);
-
-    void RemoveModule(IModule module);
 }

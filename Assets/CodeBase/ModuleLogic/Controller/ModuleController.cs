@@ -7,7 +7,7 @@ public class ModuleController : MonoBehaviour
     public event Action<bool> ToggleActive;
 
     [SerializeField] private LessonController lessonController;
-    [SerializeField] private ModulesListView modulesListView;
+    [SerializeField] private ListModuleView modulesListView;
 
     private List<IModule> _modules;
 

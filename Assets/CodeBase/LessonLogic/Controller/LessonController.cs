@@ -1,8 +1,11 @@
 ﻿using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 internal class LessonController : MonoBehaviour
 {
+    [SerializeField] private ListLessonView listLessonView;
+
     private List<Lesson> _lessons;
     public List<Lesson> Lessons => _lessons;
 
@@ -23,6 +26,7 @@ internal class LessonController : MonoBehaviour
     public void RemoveLesson(Lesson lesson)
     {
         _lessons.Remove(lesson);
+        listLessonView.RemoveLessonList(lesson);
     }
 
     public void SetLessonName(string name) => 
@@ -30,7 +34,8 @@ internal class LessonController : MonoBehaviour
 
     public void SaveSettingLesson()
     {
-        //TODO: invoke event LessonSaved and add Lesson to DataBase
+        //TODO: invoke event LessonSaved and add Lesson to DataBase and Update main list lessons 
+        listLessonView.AddLessonList(_currentLesson);
         _currentLesson = null;
     }
 }
