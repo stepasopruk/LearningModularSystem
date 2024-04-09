@@ -13,36 +13,30 @@ public class ListModuleView : MonoBehaviour
     [SerializeField] private ToggleGroup toggleGroup;
 
     private List<ToggleModuleView> _toggleModules;
-    private List<Toggle> _togglesView;
 
-    private void Awake()
-    {
+    private void Awake() => 
         _toggleModules = new List<ToggleModuleView>();
-        _togglesView = new List<Toggle>();
-    }
+
+    private void OnDisable() =>
+        RemoveAllModule();
 
     public void AddModuleList(IModule module)
     {
         ToggleModuleView toggleModuleView = Instantiate(toggleModulePrefab, content);
         toggleModuleView.Initialize(module, toggleGroup);
+        toggleModuleView.Toggle.onValueChanged.AddListener(Toggle_OnValueChanged);
         _toggleModules.Add(toggleModuleView);
-
-        if (toggleModuleView.TryGetComponent(out Toggle toggle))
-        {
-            toggle.onValueChanged.AddListener(Toggle_OnValueChanged);
-            _togglesView.Add(toggle);
-        }
     }
 
     private void Toggle_OnValueChanged(bool active)
     {
-        if(active)
+        if (active)
             ToggleActive?.Invoke(true);
-        else if(!toggleGroup.AnyTogglesOn())
+        else if (!toggleGroup.AnyTogglesOn())
             ToggleActive?.Invoke(false);
     }
 
-    public IModule RemoveModuleList() 
+    public IModule RemoveModule()
     {
         Toggle[] toggles = toggleGroup.ActiveToggles().ToArray();
 
@@ -51,13 +45,12 @@ public class ListModuleView : MonoBehaviour
             if (!toggle.isOn)
                 continue;
 
-            if(toggle.TryGetComponent(out ToggleModuleView toggleModule))
+            if (toggle.TryGetComponent(out ToggleModuleView toggleModule))
             {
                 ToggleActive?.Invoke(false);
                 toggle.onValueChanged.RemoveListener(Toggle_OnValueChanged);
                 toggleGroup.UnregisterToggle(toggle);
                 _toggleModules.Remove(toggleModule);
-                _togglesView.Remove(toggle);
                 Destroy(toggleModule.gameObject);
                 return toggleModule.Module;
             }
@@ -66,9 +59,13 @@ public class ListModuleView : MonoBehaviour
         return null;
     }
 
-    private void OnDestroy()
+    private void RemoveAllModule()
     {
-        foreach(Toggle toggle in _togglesView)
-            toggle.onValueChanged.RemoveListener(Toggle_OnValueChanged);
+        foreach (ToggleModuleView toggleModuleView in _toggleModules)
+        {
+            toggleModuleView.Toggle.onValueChanged.RemoveListener(Toggle_OnValueChanged);
+            Destroy(toggleModuleView.gameObject);
+        }
+        _toggleModules = new List<ToggleModuleView>();
     }
 }

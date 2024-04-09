@@ -8,20 +8,17 @@ public class ToggleModuleView : MonoBehaviour
 {   
     [SerializeField] private Text title;
 
-    private Toggle toggle;
+    private Toggle _toggle;
+    public Toggle Toggle => _toggle;
 
     private IModule _module;
     public IModule Module => _module;
 
-    private void Awake()
-    {
-        toggle = GetComponent<Toggle>();
-    }
-
     public void Initialize(IModule module, ToggleGroup group)
     {
+        _toggle = GetComponent<Toggle>();
         _module = module;
         title.text = module.Name;
-        toggle.group = group;
+        _toggle.group = group;
     }
 }

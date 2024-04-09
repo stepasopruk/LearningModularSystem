@@ -17,6 +17,11 @@ internal class LessonController : MonoBehaviour
         _lessons = new List<Lesson>();
     }
 
+    public void SetLesson(Lesson lesson)
+    {
+        _currentLesson = lesson;
+    }
+
     public void AddLesson(Lesson lesson)
     {
         _lessons.Add(lesson);
@@ -34,7 +39,6 @@ internal class LessonController : MonoBehaviour
 
     public void SaveSettingLesson()
     {
-        //TODO: invoke event LessonSaved and add Lesson to DataBase and Update main list lessons 
         listLessonView.AddLessonList(_currentLesson);
         _currentLesson = null;
     }

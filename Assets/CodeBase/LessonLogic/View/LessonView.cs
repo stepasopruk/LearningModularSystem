@@ -10,6 +10,9 @@ public class LessonView : MonoBehaviour
     [SerializeField] private Button deleteButton;
 
     private Lesson _lesson;
+    public Lesson Lesson => _lesson;
+
+    private SettingLessonView _settingLessonView;
 
     private void Awake()
     {
@@ -17,20 +20,28 @@ public class LessonView : MonoBehaviour
         deleteButton.onClick.AddListener(DeleteLesson);
     }
 
-    public void Initialize(Lesson lesson, ToggleGroup toggleGroupLessonView)
+    private void OnDestroy()
+    {
+        editButton.onClick.RemoveListener(EditLesson);
+        deleteButton.onClick.RemoveListener(DeleteLesson);
+    }
+
+    public void Initialize(Lesson lesson, ToggleGroup toggleGroupLessonView, SettingLessonView settingLessonView)
     {
         _lesson = lesson;
+        _settingLessonView = settingLessonView;
         toggleLessonView.Initialize(lesson, toggleGroupLessonView);
         listModuleLessonView.Initialize(lesson.LessonModules);
     }
 
     private void EditLesson()
     {
-        //TODO: Open window edit lesson 
+        _settingLessonView.gameObject.SetActive(true);
+        _settingLessonView.Initialize(_lesson);
     }
 
     private void DeleteLesson()
     {
-        //TODO: Delete lesson 
+        Destroy(gameObject);
     }
 }

@@ -9,6 +9,7 @@ public class ListLessonView : MonoBehaviour
 {
     public event Action<bool> ToggleActive;
 
+    [SerializeField] private SettingLessonView settingLessonView;
     [SerializeField] private Transform content;
     [SerializeField] private ToggleGroup toggleGroupLessonView;
     [SerializeField] private LessonView lessonViewPrefab;
@@ -22,8 +23,17 @@ public class ListLessonView : MonoBehaviour
 
     public void AddLessonList(Lesson lesson)
     {
-        LessonView lessonView = Instantiate(lessonViewPrefab, content);
-        lessonView.Initialize(lesson, toggleGroupLessonView);
+        LessonView lessonView = new LessonView();
+        lessonView = _lessonViews.FirstOrDefault(x => x.Lesson == lesson);
+
+        if (lessonView != null)
+        {
+            lessonView.Initialize(lesson, toggleGroupLessonView, settingLessonView);
+            return;
+        }
+          
+        lessonView = Instantiate(lessonViewPrefab, content);
+        lessonView.Initialize(lesson, toggleGroupLessonView, settingLessonView);
         _lessonViews.Add(lessonView);
     }
 

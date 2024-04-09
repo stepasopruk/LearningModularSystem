@@ -29,7 +29,7 @@ public class ModuleController : MonoBehaviour
 
     public void RemoveModuleLesson()
     {
-        IModule module = modulesListView.RemoveModuleList();
+        IModule module = modulesListView.RemoveModule();
 
         if (module == null)
             return;

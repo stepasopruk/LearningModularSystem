@@ -12,14 +12,14 @@ public class LessonNameInputField : MonoBehaviour
 
     public string Text => _inputField.text;
 
-    protected virtual void Awake()
+    private void OnEnable()
     {
         _inputField = GetComponent<InputField>();
         _saveButton = saveSettingLessonButton.GetComponent<Button>();
         _inputField.onValueChanged.AddListener(OnValueChanged);
     }
 
-    private void OnDestroy() => 
+    private void OnDisable() => 
         _inputField.onValueChanged.RemoveListener(OnValueChanged);
 
     private void OnValueChanged(string text)
