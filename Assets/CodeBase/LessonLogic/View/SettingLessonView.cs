@@ -3,21 +3,18 @@ using UnityEngine.UI;
 
 public class SettingLessonView : MonoBehaviour
 {
-    [SerializeField] private GameObject mainPanel;
     [SerializeField] private LessonController lessonController;
-    [SerializeField] private InputField nameLesson;
+    [SerializeField] private LessonNameInputField lessonNameInputField;
     [SerializeField] private ListModuleView listModuleView;
 
-    public void Initialize(Lesson lesson)
-    {
-        mainPanel.SetActive(false);
-        gameObject.SetActive(true);
+    private ILesson _lesson;
 
-        lessonController.SetLesson(lesson);
-        nameLesson.text = lesson.Name;
+    public void Inject(ILesson lesson)
+    {
+        _lesson = lesson;
+        lessonNameInputField.Text = lesson.Name;
 
         foreach (IModule module in lesson.LessonModules)
             listModuleView.AddModuleList(module);
     }
-
 }

@@ -1,7 +1,10 @@
+using System;
 using System.Collections.Generic;
 
 public class Lesson : ILesson
 {
+    public event Action<IModule> ModelListChanged;
+
     private string _name;
     public string Name 
     { 
@@ -21,10 +24,12 @@ public class Lesson : ILesson
     public void AddModule(IModule module)
     {
         _modules.Add(module);
+        ModelListChanged?.Invoke(module);
     }
 
     public void RemoveModule(IModule module)
     {
         _modules.Remove(module);
+        ModelListChanged?.Invoke(module);
     }
 }

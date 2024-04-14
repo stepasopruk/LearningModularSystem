@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,24 +7,33 @@ using UnityEngine.UI;
 
 public class ListModuleLessonView : MonoBehaviour
 {
+    private class IcoModules
+    {
+        public IModule Module;
+        public IcoModuleView IcoModuleView;
+    }
+
     [SerializeField] private Transform content;
     [SerializeField] private IcoModuleView icoModuleViewPrefab;
 
-    private List<IcoModuleView> _icoModules;
-    private List<IModule> _modules = new List<IModule>();
+    private List<IcoModules> _icoModules = new List<IcoModules>();
 
-    public void Initialize(List<IModule> modules)
+    internal void UpdateListModules(IModule module)
     {
-        _icoModules = new List<IcoModuleView>();
-        foreach (IModule module in modules)
-        {
-            if (_modules.Any(x => x == module))
-                continue;
+        IcoModules icoModules = _icoModules.FirstOrDefault(x => x.Module == module);
 
+        if (icoModules == null)
+        {
             IcoModuleView icoModuleView = Instantiate(icoModuleViewPrefab, content);
+            icoModules = new IcoModules();
+            icoModules.Module = module;
+            icoModules.IcoModuleView = icoModuleView;
             icoModuleView.Sprite = module.Sprite;
-            _modules.Add(module);
-            _icoModules.Add(icoModuleView);
+            _icoModules.Add(icoModules);
+        }
+        else
+        {
+            Destroy(icoModules.IcoModuleView.gameObject);
         }
     }
 }

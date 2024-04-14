@@ -18,7 +18,7 @@ public class ToggleLessonView : MonoBehaviour
         set => title.text = value;
     }
 
-    public void Initialize(ILesson lesson, ToggleGroup group)
+    public void Inject(ILesson lesson, ToggleGroup group)
     {
         toggle = GetComponent<Toggle>();
         _lesson = lesson;
