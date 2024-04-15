@@ -1,15 +1,25 @@
-﻿using System.Collections.Generic;
-using Unity.VisualScripting;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
-internal class LessonController : MonoBehaviour
+public interface ILessonController
 {
-    [SerializeField] private ListLessonView listLessonView;
+    public event Action<ILesson> ListLessonChanged;
+    void SetLesson(ILesson lesson);
+    void AddLesson(ILesson lesson);
+    void RemoveLesson(ILesson lesson);
+}
+
+internal class LessonController : MonoBehaviour, ILessonController
+{
+    public event Action<ILesson> ListLessonChanged;
+    public event Action<ILesson> CurrentLessonChanged;
 
     private List<Lesson> _lessons;
     public List<Lesson> Lessons => _lessons;
 
-    private Lesson _currentLesson;
+    private ILesson _currentLesson;
     public ILesson CurrentLesson => _currentLesson;
 
     private void Awake()
@@ -17,29 +27,25 @@ internal class LessonController : MonoBehaviour
         _lessons = new List<Lesson>();
     }
 
-    public void SetLesson(Lesson lesson)
+    public void SetLesson(ILesson lesson)
     {
         _currentLesson = lesson;
+        CurrentLessonChanged?.Invoke(_currentLesson);
     }
 
-    public void AddLesson(Lesson lesson)
+    public void AddLesson(ILesson lesson)
     {
-        _lessons.Add(lesson);
-        _currentLesson = lesson;
+        _lessons.Add((Lesson)lesson);
+        SetLesson(lesson);
+        ListLessonChanged?.Invoke(lesson);
     }
 
-    public void RemoveLesson(Lesson lesson)
+    public void RemoveLesson(ILesson lesson)
     {
-        _lessons.Remove(lesson);
-        listLessonView.RemoveLessonList(lesson);
+        _lessons.Remove((Lesson)lesson);
+        ListLessonChanged?.Invoke(lesson);
     }
 
     public void SetLessonName(string name) => 
         _currentLesson.Name = name;
-
-    public void SaveSettingLesson()
-    {
-        listLessonView.AddLessonList(_currentLesson);
-        _currentLesson = null;
-    }
 }

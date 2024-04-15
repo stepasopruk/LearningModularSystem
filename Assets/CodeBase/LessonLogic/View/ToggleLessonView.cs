@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,7 +11,6 @@ public class ToggleLessonView : MonoBehaviour
 
     private Toggle toggle;
     private ILesson _lesson;
-    public ILesson Lesson => _lesson;
 
     public string Title
     {
@@ -18,11 +18,22 @@ public class ToggleLessonView : MonoBehaviour
         set => title.text = value;
     }
 
-    public void Initialize(ILesson lesson, ToggleGroup group)
+    private void OnDestroy()
+    {
+        _lesson.LessonNameChanged -= Lesson_LessonNameChanged;
+    }
+
+    public void Inject(ILesson lesson, ToggleGroup group)
     {
         toggle = GetComponent<Toggle>();
         _lesson = lesson;
         title.text = _lesson.Name;
+        _lesson.LessonNameChanged += Lesson_LessonNameChanged;
         toggle.group = group;
+    }
+
+    private void Lesson_LessonNameChanged(string name)
+    {
+        title.text = name;
     }
 }

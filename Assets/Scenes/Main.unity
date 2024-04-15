@@ -291,7 +291,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: babdbaf200294d043bd0b449003e07f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  settingLessonView: {fileID: 1691203273}
   content: {fileID: 676914099}
   toggleGroupLessonView: {fileID: 676914100}
   lessonViewPrefab: {fileID: 8186235212087354675, guid: 9c9b020ebfdf1a24dbdede87e29e70a1, type: 3}
@@ -1388,8 +1387,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dce5be2e4a13ab644912a4796e478930, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lessonController: {fileID: 1001454210}
-  settingLessonView: {fileID: 1691203273}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -2293,6 +2290,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1001454209}
   - component: {fileID: 1001454210}
+  - component: {fileID: 1001454211}
   m_Layer: 0
   m_Name: LessonController
   m_TagString: Untagged
@@ -2327,7 +2325,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64314c0fcfee38948b13c8b7462dd63b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  listLessonView: {fileID: 43405189}
+--- !u!114 &1001454211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1001454208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e79408ecf30e4640afdd4dcda0f1bf9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lessonController: {fileID: 1001454210}
+  mainView: {fileID: 1327104534}
+  settingLessonView: {fileID: 1691203273}
 --- !u!1 &1050491246
 GameObject:
   m_ObjectHideFlags: 0
@@ -3646,6 +3658,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1327104532}
   - component: {fileID: 1327104533}
+  - component: {fileID: 1327104534}
   m_Layer: 5
   m_Name: MainPanel
   m_TagString: Untagged
@@ -3702,6 +3715,23 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &1327104534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1327104531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60e5c514eb10bea4c9874789d0a865a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  settingLessonPanel: {fileID: 1691203269}
+  listLessonView: {fileID: 43405189}
+  createLessonButton: {fileID: 701876499}
+  loadLessonButton: {fileID: 1074278620}
+  startTrainingButton: {fileID: 1312898204}
 --- !u!1 &1346168556
 GameObject:
   m_ObjectHideFlags: 0
@@ -4127,7 +4157,6 @@ GameObject:
   - component: {fileID: 1594389654}
   - component: {fileID: 1594389653}
   - component: {fileID: 1594389652}
-  - component: {fileID: 1594389655}
   - component: {fileID: 1594389656}
   m_Layer: 5
   m_Name: SaveButton
@@ -4239,19 +4268,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1594389650}
   m_CullTransparentMesh: 1
---- !u!114 &1594389655
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1594389650}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d54fcf1c9de764f4cb5228714171398d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lessonController: {fileID: 1001454210}
 --- !u!114 &1594389656
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4533,8 +4549,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abdf30900be4b5b48a1411e5e06290f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lessonController: {fileID: 1001454210}
-  saveSettingLessonButton: {fileID: 1594389655}
+  saveSettingLessonButton: {fileID: 1594389652}
 --- !u!1 &1691203269
 GameObject:
   m_ObjectHideFlags: 0
@@ -4614,9 +4629,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07a845fda3371ea4295775b7f9c52da8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainPanel: {fileID: 1327104531}
-  lessonController: {fileID: 1001454210}
-  nameLesson: {fileID: 1662695600}
+  lessonNameInputField: {fileID: 1662695603}
   listModuleView: {fileID: 1132866493}
 --- !u!1 &1693938449
 GameObject:
