@@ -36,12 +36,17 @@ public class ListLessonView : MonoBehaviour
             lessonView.UnSubscribeOnClickButtons();
     }
 
-    public void Inject(ILesson lesson, ILessonController lessonController, GameObject active, GameObject unactive)
+    public void Inject(ILessonController lessonController, GameObject active, GameObject unactive)
     {
         _active = active;
         _unactive = unactive;
         _lessonController = lessonController;
         _lessonController.ListLessonChanged += LessonController_ListLessonChanged;
+    }
+
+    public void LessonChanged(ILesson lesson)
+    {
+
     }
 
     private void LessonController_ListLessonChanged(ILesson lesson)
@@ -58,13 +63,15 @@ public class ListLessonView : MonoBehaviour
         lessonView.Inject(lesson, _lessonController, toggleGroupLessonView);
         lessonView.SubscribeOnClickButtons(_active, _unactive);
         _lessonViews.Add(lessonView);
+        _lessons.Add(lesson);
     }
 
     private void RemoveLessonList(ILesson lesson)
     {
-        LessonView lessonView = _lessonViews.FirstOrDefault(x => x.Equals(lesson));
+        LessonView lessonView = _lessonViews.FirstOrDefault(x => x.Lesson == lesson);
         lessonView.UnSubscribeOnClickButtons();
         _lessonViews.Remove(lessonView);
+        _lessons.Remove(lesson);
         Destroy(lessonView);
     }
 }

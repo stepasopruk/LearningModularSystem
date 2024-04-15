@@ -4,7 +4,17 @@ using UserInterfaceExtension;
 
 public class CreateLessonButton : AbstractButtonView
 {
-    [SerializeField] private LessonController lessonController;
+    private ILessonController _lessonController;
+
+    private GameObject _active;
+    private GameObject _unactive;
+
+    public void Inject(ILessonController lessonController, GameObject active, GameObject unactive)
+    {
+        _lessonController = lessonController;
+        _active = active;
+        _unactive = unactive;
+    }
 
     protected override void OnClick() => 
         CreateLesson();
@@ -12,6 +22,8 @@ public class CreateLessonButton : AbstractButtonView
     private void CreateLesson()
     {
         Lesson lesson = new Lesson();
-        lessonController.AddLesson(lesson);
+        _lessonController.AddLesson(lesson);
+        _active.SetActive(true);
+        _unactive.SetActive(false);
     }
 }

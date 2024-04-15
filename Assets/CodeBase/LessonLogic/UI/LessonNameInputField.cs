@@ -4,10 +4,9 @@ using UnityEngine.UI;
 [RequireComponent(typeof(InputField))]
 public class LessonNameInputField : MonoBehaviour
 {
-    [SerializeField] private SaveSettingLessonButton saveSettingLessonButton;
+    [SerializeField] private Button saveSettingLessonButton;
     
     private InputField _inputField;
-    private Button _saveButton;
 
     private ILesson _lesson;
 
@@ -21,14 +20,13 @@ public class LessonNameInputField : MonoBehaviour
     {
         _inputField = GetComponent<InputField>();
         _inputField.text = Text;
-        _saveButton = saveSettingLessonButton.GetComponent<Button>();
         _inputField.onValueChanged.AddListener(OnValueChanged);
     }
 
     private void OnDisable() => 
         _inputField.onValueChanged.RemoveListener(OnValueChanged);
 
-    public void Inject(ILesson lesson)
+    public void LessonChanged(ILesson lesson)
     {
         _lesson = lesson;
     }
@@ -37,10 +35,10 @@ public class LessonNameInputField : MonoBehaviour
     {
         if (text == string.Empty)
         {
-            _saveButton.interactable = false;
+            saveSettingLessonButton.interactable = false;
             return;
         }
-        _saveButton.interactable = true;
+        saveSettingLessonButton.interactable = true;
         _lesson.Name = text;
     }
 }

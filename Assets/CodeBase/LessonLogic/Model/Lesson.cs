@@ -4,12 +4,20 @@ using System.Collections.Generic;
 public class Lesson : ILesson
 {
     public event Action<IModule> ModelListChanged;
+    public event Action<string> LessonNameChanged;
 
     private string _name;
     public string Name 
     { 
-        get => _name; 
-        set => _name = value; 
+        get => _name;
+        set 
+        {
+            if (_name == value)
+                return;
+
+            _name = value;
+            LessonNameChanged?.Invoke(_name);
+        }
     }
 
     private readonly List<IModule> _modules;

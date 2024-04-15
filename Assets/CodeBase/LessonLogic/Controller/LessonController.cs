@@ -14,8 +14,7 @@ public interface ILessonController
 internal class LessonController : MonoBehaviour, ILessonController
 {
     public event Action<ILesson> ListLessonChanged;
-
-    [SerializeField] private LessonInjector lessonInjector;
+    public event Action<ILesson> CurrentLessonChanged;
 
     private List<Lesson> _lessons;
     public List<Lesson> Lessons => _lessons;
@@ -31,7 +30,7 @@ internal class LessonController : MonoBehaviour, ILessonController
     public void SetLesson(ILesson lesson)
     {
         _currentLesson = lesson;
-        lessonInjector.Inject(lesson);
+        CurrentLessonChanged?.Invoke(_currentLesson);
     }
 
     public void AddLesson(ILesson lesson)
@@ -49,10 +48,4 @@ internal class LessonController : MonoBehaviour, ILessonController
 
     public void SetLessonName(string name) => 
         _currentLesson.Name = name;
-
-    public void SaveSettingLesson()
-    {
-        //listLessonView.AddLessonList(_currentLesson);
-        _currentLesson = null;
-    }
 }

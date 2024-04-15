@@ -10,6 +10,7 @@ public class LessonView : MonoBehaviour
     [SerializeField] private Button deleteButton;
 
     private ILesson _lesson;
+    public ILesson Lesson => _lesson;
     private ILessonController _lessonController;
 
     private GameObject _active;
