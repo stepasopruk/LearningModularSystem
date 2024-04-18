@@ -7,6 +7,7 @@ public class ModuleController : MonoBehaviour
     public event Action<bool> ToggleActive;
 
     [SerializeField] private LessonController lessonController;
+    [SerializeField] private EditModuleController editModuleController;
     [SerializeField] private ListModuleView modulesListView;
 
     private List<IModule> _modules;
@@ -36,6 +37,16 @@ public class ModuleController : MonoBehaviour
 
         _modules.Remove(module);
         lessonController.CurrentLesson.RemoveModule(module);
+    }
+
+    public void EditModule()
+    {
+        IModule module = modulesListView.EditModule();
+        
+        if (module == null) 
+            return;
+
+        editModuleController.EditModule(module);
     }
 
     private void ModulesListView_ToggleActive(bool active) => 

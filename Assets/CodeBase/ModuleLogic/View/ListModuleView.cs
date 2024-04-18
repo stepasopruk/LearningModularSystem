@@ -14,7 +14,7 @@ public class ListModuleView : MonoBehaviour
 
     private List<ToggleModuleView> _toggleModules;
 
-    private void Awake() => 
+    private void Awake() =>
         _toggleModules = new List<ToggleModuleView>();
 
     private void OnDisable() =>
@@ -38,25 +38,27 @@ public class ListModuleView : MonoBehaviour
 
     public IModule RemoveModule()
     {
-        Toggle[] toggles = toggleGroup.ActiveToggles().ToArray();
+        ToggleModuleView toggleModule = GetActiveToggleModuleView();
 
-        foreach (Toggle toggle in toggles)
-        {
-            if (!toggle.isOn)
-                continue;
+        if (toggleModule == null)
+            return null;
 
-            if (toggle.TryGetComponent(out ToggleModuleView toggleModule))
-            {
-                ToggleActive?.Invoke(false);
-                toggle.onValueChanged.RemoveListener(Toggle_OnValueChanged);
-                toggleGroup.UnregisterToggle(toggle);
-                _toggleModules.Remove(toggleModule);
-                Destroy(toggleModule.gameObject);
-                return toggleModule.Module;
-            }
-        }
+        ToggleActive?.Invoke(false);
+        toggleModule.Toggle.onValueChanged.RemoveListener(Toggle_OnValueChanged);
+        toggleGroup.UnregisterToggle(toggleModule.Toggle);
+        _toggleModules.Remove(toggleModule);
+        Destroy(toggleModule.gameObject);
+        return toggleModule.Module;
+    }
 
-        return null;
+    public IModule EditModule()
+    {
+        ToggleModuleView toggleModule = GetActiveToggleModuleView();
+
+        if (toggleModule == null)
+            return null;
+
+        return toggleModule.Module;
     }
 
     private void RemoveAllModule()
@@ -67,5 +69,16 @@ public class ListModuleView : MonoBehaviour
             Destroy(toggleModuleView.gameObject);
         }
         _toggleModules = new List<ToggleModuleView>();
+    }
+
+    private ToggleModuleView GetActiveToggleModuleView()
+    {
+        Toggle[] toggles = toggleGroup.ActiveToggles().ToArray();
+        Toggle toggle = toggles.First();
+
+        if (toggle.TryGetComponent(out ToggleModuleView toggleModule))
+            return toggleModule;
+        else
+            return null;
     }
 }
