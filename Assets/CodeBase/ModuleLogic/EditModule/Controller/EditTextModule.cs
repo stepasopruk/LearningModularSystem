@@ -12,8 +12,8 @@ public class EditTextModule : EditModuleBase
         Debug.Log($"Edit {module.Name}");
         ModuleSO moduleSO = moduleViewSO.FirstOrDefault(x => x.Module == module);
 
-        if (moduleSO == null)
-            CreateModuleData(module, out moduleSO);
+        //if (moduleSO == null)
+        //    CreateModuleData(module, out moduleSO);
 
         moduleView.gameObject.SetActive(true);
         moduleView.RecordingDataView(moduleSO);
