@@ -9,4 +9,13 @@ public class TextModule : IModule
     public string Name => _name;
     public Sprite Sprite { get; set; }
 
+    private TextModuleSO _moduleData;
+    public ModuleSO ModuleData => _moduleData;
+
+    public TextModule(TextModuleSO moduleData, Sprite sprite)
+    {
+        _moduleData = moduleData;
+        Sprite = sprite;
+        _moduleData.Module = this;
+    }
 }

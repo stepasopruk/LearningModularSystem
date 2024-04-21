@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ModuleController : MonoBehaviour
+public partial class ModuleController : MonoBehaviour
 {
     public event Action<bool> ToggleActive;
 

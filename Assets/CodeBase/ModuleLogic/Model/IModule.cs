@@ -2,6 +2,8 @@ using UnityEngine;
 
 public interface IModule
 {
+    ModuleSO ModuleData { get; }
+
     ModuleType ModuleType { get; }
 
     string Name { get; }

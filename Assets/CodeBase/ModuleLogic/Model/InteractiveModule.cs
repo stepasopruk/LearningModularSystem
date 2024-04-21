@@ -9,4 +9,14 @@ public class InteractiveModule : IModule
     public ModuleType ModuleType => ModuleType.Interactive;
     public string Name => _name;
     public Sprite Sprite { get; set; }
+
+    private InteractiveModuleSO _moduleData;
+    public ModuleSO ModuleData => _moduleData;
+
+    public InteractiveModule(InteractiveModuleSO moduleData, Sprite sprite)
+    {
+        _moduleData = moduleData;
+        Sprite = sprite;
+        _moduleData.Module = this;
+    }
 }

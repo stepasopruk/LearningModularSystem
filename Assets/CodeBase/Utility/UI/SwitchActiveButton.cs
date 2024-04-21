@@ -10,7 +10,10 @@ public class SwitchActiveButton : AbstractButtonView
 
     protected override void OnClick()
     {
-        _inactive.SetActive(false);
-        _active.SetActive(true);
+        if(_inactive != null)
+            _inactive.SetActive(false);
+
+        if(_active != null)
+            _active.SetActive(true);
     }
 }

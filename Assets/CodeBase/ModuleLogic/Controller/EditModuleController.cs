@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EditModuleController : MonoBehaviour
 {
+    [SerializeField] private EditModuleView editModuleView;
     [SerializeField] private List<EditModuleBase> editModules;
 
     public void EditModule(IModule module)
@@ -13,6 +14,10 @@ public class EditModuleController : MonoBehaviour
         if (editModule == null)
             return;
 
+        editModuleView.gameObject.SetActive(true);
+        editModuleView.RecordingEditList(editModule.DataModules);
+
+        editModule.ModuleView.gameObject.SetActive(true);
         editModule.EditModule(module);
     }
 }
